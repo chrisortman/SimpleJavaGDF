@@ -16,6 +16,7 @@ public class GameMain {
         JFrame frame = new JFrame(GAME_TITLE);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(GAME_WIDTH,GAME_HEIGHT);
+        frame.setResizable(true);
         frame.setResizable(false);
 
         sGame = new Game(GAME_WIDTH,GAME_HEIGHT);
