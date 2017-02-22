@@ -1,5 +1,6 @@
 package com.jamescho.game.main;
 
+import com.jamescho.framework.util.InputHandler;
 import com.jamescho.game.state.LoadState;
 import com.jamescho.game.state.State;
 
@@ -19,6 +20,8 @@ public class Game extends JPanel implements Runnable {
     private volatile boolean running;
     private volatile State currentState;
 
+    private InputHandler inputHandler;
+
     public Game(int gameWidth, int gameHeight) {
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
@@ -30,15 +33,23 @@ public class Game extends JPanel implements Runnable {
 
     public void setCurrentState(State newState) {
         System.gc();
+        currentState = newState;
         newState.init();
-        this.currentState = newState;
+        inputHandler.setCurrentState(currentState);
     }
 
     @Override
     public void addNotify() {
         super.addNotify();
+        initInput();
         setCurrentState(new LoadState());
         initGame();
+    }
+
+    private void initInput() {
+        inputHandler = new InputHandler();
+        addKeyListener(inputHandler);
+        addMouseListener(inputHandler);
     }
 
     public void exit() {
@@ -54,14 +65,13 @@ public class Game extends JPanel implements Runnable {
     @Override
     public void run() {
         while(running) {
-            System.out.println("Run GameLoop");
-            
+
             currentState.update();
             prepareGameImage();
             currentState.render(gameImage.getGraphics());
             repaint();
             try {
-                Thread.sleep(14);
+                Thread.sleep(12);
             } catch(InterruptedException e) {
                 e.printStackTrace();
             }

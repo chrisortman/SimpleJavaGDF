@@ -23,7 +23,9 @@ public class GameMain {
         frame.add(sGame);
         frame.pack();
 
+        frame.setIconImage(Resources.iconimage);
         frame.setVisible(true);
+
     }
 
     private static void showCrappyUI(JFrame frame) {

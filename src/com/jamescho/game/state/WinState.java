@@ -1,30 +1,27 @@
 package com.jamescho.game.state;
 
-import com.jamescho.game.main.Resources;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 /**
- * Created by cortman on 2/19/17.
+ * Created by cortman on 2/22/17.
  */
-public class LoadState extends State {
+public class WinState extends State {
 
     @Override
     public void init() {
-        Resources.load();
-        System.out.println("Loaded Successfully");
+
     }
 
     @Override
     public void update() {
-        setCurrentState(new MenuState());
+
     }
 
     @Override
     public void render(Graphics g) {
-
+        g.drawString("You Win", 100, 100);
     }
 
     @Override
@@ -40,5 +37,10 @@ public class LoadState extends State {
     @Override
     public void onKeyRelease(KeyEvent e) {
 
+    }
+
+    @Override
+    public void setCurrentState(State newState) {
+        super.setCurrentState(newState);
     }
 }

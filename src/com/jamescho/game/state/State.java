@@ -14,7 +14,7 @@ public abstract class State {
     public abstract void update();
     public abstract void render(Graphics g);
     public abstract void onClick(MouseEvent e);
-    public abstract void onKeyPress(MouseEvent e);
+    public abstract void onKeyPress(KeyEvent e);
     public abstract void onKeyRelease(KeyEvent e);
 
     public void setCurrentState(State newState) {
