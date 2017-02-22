@@ -74,12 +74,20 @@ public class MenuState extends State {
 
     @Override
     public void onKeyPress(KeyEvent e) {
+        if (wrongGuesses == 5) {
+            return;
+        }
+
         if (Character.isAlphabetic(e.getKeyChar())) {
             Character guess = Character.toUpperCase(e.getKeyChar());
             Character nextLetter = correctLetters[nextLetterIdx];
 
             if (Objects.equals(guess, nextLetter)) {
                 nextLetterIdx++;
+
+                if (nextLetterIdx > 2) {
+                    setCurrentState(new WinState());
+                }
             } else {
                 wrongGuesses++;
             }
